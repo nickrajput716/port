@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nick's Portfolio (Tailwind)</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Condensed&family=Bebas+Neue&family=Orbitron&family=Montserrat:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(
+        to bottom,
+        #120c1e 0%, #1a1527 20%, #291d3f 40%, #40255c 60%, #57406d 80%, #6f5e8e 100%
+      );
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 100% 1000vh;
+    }
+  </style>
+</head>
+<body class="text-white overflow-x-hidden">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 flex justify-between items-center bg-transparent backdrop-blur-lg px-6 py-4 transition-all duration-300 border-b border-white/5">
+    <div class="text-white text-2xl font-bold font-[cursive]">NICK</div>
+    <input type="checkbox" id="menu-toggle" class="hidden">
+    <label for="menu-toggle" class="md:hidden text-3xl text-white cursor-pointer">&#9776;</label>
+    <ul class="hidden md:flex gap-6 text-lg font-[cursive]" id="nav-menu">
+      <li><a href="#start" class="hover:text-purple-500">Start</a></li>
+      <li><a href="#work" class="hover:text-purple-500">Work</a></li>
+      <li><a href="#about" class="hover:text-purple-500">About</a></li>
+      <li><a href="#contact" class="hover:text-purple-500">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="start" class="h-screen flex items-center justify-center bg-cover bg-center relative pt-24" style="background-image: url('/static/pexels-eva-bronzini-7629315.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
+    <div class="relative z-10 max-w-5xl text-left px-4">
+      <h1 class="text-5xl md:text-7xl font-bold font-[Dancing_Script] leading-tight mb-6">
+        Hii, I'm <span class="text-purple-500">Nikhil Rana</span>
+      </h1>
+      <p class="text-2xl md:text-4xl font-semibold text-cyan-300 font-[Orbitron]">
+        a magician who <span class="decrypted-cycle" 
+        data-words='["write codes", "make apps", "develop projects"]'
+        data-speed="70" 
+        data-characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+">
+        codes</span>
+      </p>
+    </div>
+  </header>
+
+  <!-- Work Section -->
+  <section id="work" class="py-20 px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-5xl font-[Bebas_Neue] text-purple-300">WORK</h2>
+      <p class="text-xl text-gray-200 font-[Montserrat]">Projects I Have Worked On</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <!-- Example Project Card -->
+      <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
+        <img src="static/p1.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold mb-2">CT-FARMA - HP</h3>
+        <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
+      </div>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
+        <img src="static/p3.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold mb-2">CT-PLANNER - MST Sitting plan</h3>
+        <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
+      </div>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
+        <img src="static/p2.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold mb-2">CT-PAYCAL - Calculate Dhaj</h3>
+        <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
+      </div>
+      <!-- Add more cards similarly -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-5xl font-[Bebas_Neue] text-purple-300">About Me</h2>
+      <p class="text-xl text-gray-200 font-[Montserrat]">Know Me Better</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 max-w-4xl mx-auto">
+      <pre class="text-green-200 text-sm font-mono whitespace-pre-wrap">
+@dataclass
+class NikhilRana:
+  name: str = "Nikhil Rana"
+  location: str = "Himachal Pradesh, India"
+  github: str = "nickrajput716"
+  current_projects = ["NLP project using BERT/GPT"]
+  looking_to_collab_on = ["full-stack apps", "tools"]
+  learning = ["MLOps", "React optimization"]
+  fun_fact = "Built a farming AI site with real-time APIs and chatbot"
+      </pre>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="bg-gray-900 py-16 px-4 text-center">
+    <h2 class="text-4xl font-[Dancing_Script] text-white mb-6">Contact Me</h2>
+    <form id="contactForm" method="POST" class="max-w-xl mx-auto space-y-4">
+      <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-2 rounded bg-gray-800 text-white">
+      <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-2 rounded bg-gray-800 text-white">
+      <textarea name="message" rows="4" placeholder="Your Message" required class="w-full px-4 py-2 rounded bg-gray-800 text-white"></textarea>
+      <button type="submit" class="bg-purple-600 hover:bg-purple-800 text-white font-bold px-6 py-2 rounded">Send</button>
+    </form>
+  </footer>
+
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
