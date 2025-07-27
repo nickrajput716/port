@@ -3,7 +3,9 @@ import smtplib
 from email.message import EmailMessage
 
 
-app=Flask(__name__)
+
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+
 
 app.secret_key="abc"
 
