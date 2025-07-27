@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Support - Cobra Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .support-box {
+      background-color: #1e293b;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-item {
+      margin-bottom: 1rem;
+    }
+
+    .contact-label {
+      color: #c084fc;
+      font-weight: 600;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(to right, #7e22ce, #9333ea);
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.5);
+    }
+  </style>
+</head>
+<body class="px-6 py-12">
+
+  <h1 class="text-4xl font-bold text-center text-purple-300 mb-10 scroll-reveal">📞 Contact & Support</h1>
+  
+  <p class="text-center text-gray-300 mb-8 max-w-xl mx-auto scroll-reveal">
+    We're here to help. Reach out to Cobra Tech using any of the details below:
+  </p>
+
+  <div class="support-box scroll-reveal">
+    <div class="contact-item">
+      <p class="contact-label">📧 Email:</p>
+      <a href="mailto:nickrajput716@gmail.com">nickrajput716@gmail.com</a>
+    </div>
+
+    <div class="contact-item">
+      <p class="contact-label">📱 Phone:</p>
+      <p>+91 7018040856</p>
+    </div>
+
+    <div class="contact-item">
+      <p class="contact-label">🌐 LinkedIn:</p>
+      <p><a href="https://www.linkedin.com/in/nikhil-rana-59742a291/" target="_blank" class="text-blue-300 underline">Nikhil Rana - LinkedIn</a></p>
+    </div>
+
+    <div class="contact-item">
+      <p class="contact-label">🏠 Location:</p>
+      <p>Kangra, Himachal Pradesh, India</p>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <div class="text-center mt-16 scroll-reveal">
+    <a href="/" class="back-button">← Back to Projects</a>
+  </div>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

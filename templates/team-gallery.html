@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cobra Tech - Team Gallery</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      perspective: 1000px;
+      margin-top: 4rem;
+    }
+
+    .photo-card {
+      position: relative;
+      width: 220px;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform: rotateZ(calc(var(--r, 0) * 60deg));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .photo-card:hover {
+      transform: scale(1.05) rotateZ(0deg);
+      z-index: 10;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      transition: filter 0.3s ease;
+    }
+
+    .photo-card:hover img {
+      filter: brightness(0.75);
+    }
+
+    .info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      text-align: center;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .photo-card:hover .info {
+      opacity: 1;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(to right, #7e22ce, #9333ea);
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.5);
+    }
+
+    @media screen and (max-width: 768px) {
+      .photo-card {
+        width: 90%;
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="max-w-7xl mx-auto px-6 py-10">
+  <h1 class="text-4xl text-center text-purple-300 font-bold mb-4">Team Gallery</h1>
+  <p class="text-center text-gray-300 max-w-2xl mx-auto text-lg mb-12">
+    A visual tribute to the faces behind Cobra Tech. Scroll through our creative minds in motion!
+  </p>
+
+  <div class="gallery" id="team-gallery"></div>
+
+  <!-- Back Link -->
+  <div class="text-center mt-16">
+    <a href="/" class="back-button">← Back to Projects</a>
+  </div>
+</section>
+
+<script>
+const members = [
+  { img: 'g1.jpg', name: '', role: 'The Hustlers 🧠' },
+  { img: 'g2.jpg', name: '', role: 'Tech Talks & Tea ☕' },
+  { img: 'g3.jpg', name: '', role: 'Code & Chill 😎' },
+  { img: 'g4.jpg', name: '', role: 'Cobra Bond 💜' },
+  { img: 'g5.jpg', name: '', role: 'Design Days 🎨' },
+  { img: 'g6.jpg', name: '', role: 'Firebase & Friendship 🔥' },
+  { img: 'g7.jpg', name: '', role: 'Trio 🔥' },
+  { img: 'g8.jpg', name: '', role: 'UI on Point ✨' },
+  { img: 'g9.jpg', name: '', role: 'DevOps Diaries 🔧' },
+  { img: 'g10.jpg', name: '', role: 'ML Memories 📊' },
+  { img: 'g11.jpg', name: '', role: 'Testing Patience 💻' },
+  { img: 'g12.jpg', name: '', role: 'Project Vibes 🚀' },
+  { img: 'g13.jpg', name: '', role: 'Security & Smiles 🔒' },
+  { img: 'g14.jpg', name: '', role: 'Clicks & Code 📸' },
+  { img: 'g15.jpg', name: '', role: 'Database & Dost ❤️' },
+  { img: 'g16.jpg', name: '', role: "Gym Brother's 💪" },
+  { img: 'g17.jpg', name: '', role: 'Deploy Squad ✅' },
+  { img: 'g18.jpg', name: '', role: 'Water Boys 🌊' },
+  { img: 'g19.jpg', name: '', role: 'All Done ☑️' },
+];
+
+const gallery = document.getElementById("team-gallery");
+
+members.forEach((member, index) => {
+  const card = document.createElement("div");
+  card.className = "photo-card scroll-reveal"; // <--- scroll-reveal class added
+  card.style.setProperty("--r", ((index % 5) - 2) * 0.1);
+
+  card.innerHTML = `
+    <img src="/static/team/${member.img}" alt="${member.name}">
+    <div class="info">${member.role}</div>
+  `;
+  gallery.appendChild(card);
+});
+
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // animate once
+    }
+  });
+}, {
+  threshold: 0.5
+});
+
+document.querySelectorAll('.scroll-reveal').forEach(el => {
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

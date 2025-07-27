@@ -3,116 +3,561 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nick's Portfolio (Tailwind)</title>
+  <title>Nick's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Double:wght@613&family=Manufacturing+Consent&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Double:wght@613&family=Dancing+Script:wght@400..700&family=Manufacturing+Consent&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- THREE.js Core -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Loaders -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/examples/js/controls/OrbitControls.js"></script>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Condensed&family=Bebas+Neue&family=Orbitron&family=Montserrat:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      background: linear-gradient(
-        to bottom,
-        #120c1e 0%, #1a1527 20%, #291d3f 40%, #40255c 60%, #57406d 80%, #6f5e8e 100%
-      );
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-size: 100% 1000vh;
-    }
-  </style>
+  <!-- Meshline for curved band -->
+  <script src="https://cdn.jsdelivr.net/npm/three.meshline@1.4.0/build/THREE.MeshLine.min.js"></script>
 </head>
-<body class="text-white overflow-x-hidden">
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full z-50 flex justify-between items-center bg-transparent backdrop-blur-lg px-6 py-4 transition-all duration-300 border-b border-white/5">
-    <div class="text-white text-2xl font-bold font-[cursive]">NICK</div>
-    <input type="checkbox" id="menu-toggle" class="hidden">
-    <label for="menu-toggle" class="md:hidden text-3xl text-white cursor-pointer">&#9776;</label>
-    <ul class="hidden md:flex gap-6 text-lg font-[cursive]" id="nav-menu">
-      <li><a href="#start" class="hover:text-purple-500">Start</a></li>
-      <li><a href="#work" class="hover:text-purple-500">Work</a></li>
-      <li><a href="#about" class="hover:text-purple-500">About</a></li>
-      <li><a href="#contact" class="hover:text-purple-500">Contact</a></li>
+<body >
+  <nav class="navbar">
+    <div class="navbar-brand"><span>RANA </span></div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">&#9776;</label>
+    <ul class="navbar-menu">
+      <li><a href="#start">Start </a></li>
+      <li><a href="#work">Work </span></a></li>
+      <li><a href="#about">About </a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact </a></li>
     </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <header id="start" class="h-screen flex items-center justify-center bg-cover bg-center relative pt-24" style="background-image: url('/static/pexels-eva-bronzini-7629315.jpg');">
-    <div class="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
-    <div class="relative z-10 max-w-5xl text-left px-4">
-      <h1 class="text-5xl md:text-7xl font-bold font-[Dancing_Script] leading-tight mb-6">
-        Hii, I'm <span class="text-purple-500">Nikhil Rana</span>
-      </h1>
-      <p class="text-2xl md:text-4xl font-semibold text-cyan-300 font-[Orbitron]">
-        a magician who <span class="decrypted-cycle" 
-        data-words='["write codes", "make apps", "develop projects"]'
-        data-speed="70" 
-        data-characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+">
-        codes</span>
-      </p>
+  <header id="start" class="hero">
+    <div class="content">
+      <h1 class="split-text">Hii, I'm <span class="highlight">Nikhil Rana </span></h1>
+      <p> a magician who <span class="decrypted-cycle" 
+                data-words='["write codes", "make apps", "develop projects"]'
+                data-speed="70"
+                data-characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+" style="color: rgb(255, 255, 255); ">
+            codes
+          </span></p>
     </div>
   </header>
 
-  <!-- Work Section -->
-  <section id="work" class="py-20 px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-5xl font-[Bebas_Neue] text-purple-300">WORK</h2>
-      <p class="text-xl text-gray-200 font-[Montserrat]">Projects I Have Worked On</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-      <!-- Example Project Card -->
-      <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
-        <img src="static/p1.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
-        <h3 class="text-xl font-semibold mb-2">CT-FARMA - HP</h3>
-        <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
-      </div>
-        <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
-        <img src="static/p3.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
-        <h3 class="text-xl font-semibold mb-2">CT-PLANNER - MST Sitting plan</h3>
-        <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
-      </div>
-        <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
-        <img src="static/p2.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
-        <h3 class="text-xl font-semibold mb-2">CT-PAYCAL - Calculate Dhaj</h3>
-        <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
-      </div>
-      <!-- Add more cards similarly -->
-    </div>
-  </section>
+  
+  
+    <div class="fullpage">
+      <div class="block">
+        <section id="work" class="work-section">
+          <div class="work-header-container">
+            <h1 class="work-main-header">WORK </h1>
+            <h3 class="work-sub-header">Projects I Have Worked On</h3>
+          </div>
+<div class=" mb-10 md:mb-0 md:pl-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto justify-center min-h-[500px]">
+<a href="/projects/ct-farma" rel="noopener noreferrer"  class="z-[100] bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg block hover:bg-white/20 transition ">
+    <img src="static/project/p1.png" alt="CT-Farma" class="w-full h-48 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-2">CT-FARMA - HP</h3>
+    <p class="text-sm text-gray-300">An AI-powered agriculture app for Himachal Pradesh farmers.</p>
+  </a>
 
-  <!-- About Section -->
-  <section id="about" class="py-20 px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-5xl font-[Bebas_Neue] text-purple-300">About Me</h2>
-      <p class="text-xl text-gray-200 font-[Montserrat]">Know Me Better</p>
-    </div>
-    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 max-w-4xl mx-auto">
-      <pre class="text-green-200 text-sm font-mono whitespace-pre-wrap">
-@dataclass
-class NikhilRana:
-  name: str = "Nikhil Rana"
-  location: str = "Himachal Pradesh, India"
-  github: str = "nickrajput716"
-  current_projects = ["NLP project using BERT/GPT"]
-  looking_to_collab_on = ["full-stack apps", "tools"]
-  learning = ["MLOps", "React optimization"]
-  fun_fact = "Built a farming AI site with real-time APIs and chatbot"
-      </pre>
-    </div>
-  </section>
+  <a href="/projects/ct-paycal" rel="noopener noreferrer"  class="z-[100] bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg block hover:bg-white/20 transition">
+    <img src="static/project/p2.png" alt="CT-PAYCAL" class="w-full h-48 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-2">CT-PAYCAL - Dahej Calculator</h3>
+    <p class="text-sm text-gray-300">A calculator for computing Dahej and budget plans.</p>
+  </a>
 
-  <!-- Contact / Footer -->
-  <footer id="contact" class="bg-gray-900 py-16 px-4 text-center">
-    <h2 class="text-4xl font-[Dancing_Script] text-white mb-6">Contact Me</h2>
-    <form id="contactForm" method="POST" class="max-w-xl mx-auto space-y-4">
-      <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-2 rounded bg-gray-800 text-white">
-      <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-2 rounded bg-gray-800 text-white">
-      <textarea name="message" rows="4" placeholder="Your Message" required class="w-full px-4 py-2 rounded bg-gray-800 text-white"></textarea>
-      <button type="submit" class="bg-purple-600 hover:bg-purple-800 text-white font-bold px-6 py-2 rounded">Send</button>
-    </form>
-  </footer>
+  <a href="/projects/ct-planner" rel="noopener noreferrer"  class="z-[100] bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg block hover:bg-white/20 transition">
+    <img src="static/project/p3.png" alt="CT-PLANNER" class="w-full h-48 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-2">CT-PLANNER - MST Seating</h3>
+    <p class="text-sm text-gray-300">Tool for MST sitting arrangement planning in colleges.</p>
+  </a>
 
-  <script src="{{url_for('static', filename='script.js')}}"></script>
+  <a href="/projects/ct-rps"  rel="noopener noreferrer"  class="z-[100] bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg block hover:bg-white/20 transition">
+    <img src="static/project/p4.png" alt="CT-RPS" class="w-full h-48 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-2">CT-RPS - Rock-Paper-Scissors</h3>
+    <p class="text-sm text-gray-300">Interactive game for playing rock-paper-scissors with animations.</p>
+  </a>
+
+  <a href="/projects/ct-weather" rel="noopener noreferrer"  class="z-[100] bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg block hover:bg-white/20 transition">
+    <img src="static/project/p5.png" alt="CT-WEATHER" class="w-full h-48 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-2">CT-WEATHER - Weather App</h3>
+    <p class="text-sm text-gray-300">Real-time weather forecast application for farmers and travelers.</p>
+  </a>
+
+<a href="/projects/ct-kbc" rel="noopener noreferrer"  class="z-[100] bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg block hover:bg-white/20 transition">
+    <img src="static/project/p6.png" alt="CT-KBC" class="w-full h-48 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-2">CT-KBC - Kaun Banega Crorepati</h3>
+    <p class="text-sm text-gray-300">Quiz app based on the famous KBC format with lifelines and sound effects.</p>
+  </a>
+
+</div>
+<div class="show-more-container" style="text-align: center; margin-top: 20px; display:none">
+  <button id="showMoreWorkBtn" class="show-more-btn">Show More</button>
+</div>
+
+
+
+</section>
+ <section id="about" class="about-section">
+  <div class="about-container">
+    <div class="work-header-container">
+      <h2 class="work-main-header">About Me </h2>
+      <h3 class="work-sub-header">Know Me Better</h3>
+    </div>
+    <div class="code-wrapper">
+      <div class="line-numbers" id="lineNumbers"></div>
+      <pre class="code-content"><code>
+<span class="keyword">from</span> <span class="module">dataclasses</span> <span class="keyword">import</span> <span class="function">dataclass</span>, <span class="function">field</span>
+<span class="keyword">from</span> <span class="module">datetime</span> <span class="keyword">import</span> <span class="function">datetime</span>
+<span class="keyword">from</span> <span class="module">typing</span> <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Dict</span>
+
+<span class="decorator">@dataclass</span>
+<span class="keyword">class</span> <span class="class-name">NikhilRana</span>:
+    name: str = <span class="string">"Nikhil Rana"</span>
+    github: str = <span class="string">"nickrajput716"</span>
+    location: str = <span class="string">"Himachal Pradesh, India"</span>
+    email: str = <span class="string">"nickrajput716@gmail.com"</span></span>
+    current_projects: List[str] = <span class="function">field</span>(default_factory=<span class="keyword">lambda</span>: [
+        <span class="string">"NLP project using BERT/GPT"</span>
+    ])
+    looking_to_collab_on: List[str] = <span class="function">field</span>(default_factory=<span class="keyword">lambda</span>: [
+        <span class="string">"AI/ML"</span>,<span class="string">"Data Science and Analysis"</span>,<span class="string">"full-stack apps"</span>, <span class="string">"real‑world Problem's solutions"</span>
+    ])
+    interests: List[str] = <span class="function">field</span>(default_factory=<span class="keyword">lambda</span>: [
+        <span class="string">"Large datasets"</span>, <span class="string">"ML deployment"</span>, <span class="string">"backend scaling"</span>,<span class="string">"hackathons"</span>, <span class="string">"open‑source"</span>
+    ])
+    learning: List[str] = <span class="function">field</span>(default_factory=<span class="keyword">lambda</span>: [
+        <span class="string">"Advanced data science"</span>, <span class="string">"MLOps"</span>,<span class="string">"React optimization"</span>, <span class="string">"simulation systems"</span>
+    ])
+    fun_fact: str = <span class="string">"Built a farming AI site with real‑time APIs and a chatbot"</span>
+    tech_stack: List[str] = <span class="function">field</span>(default_factory=<span class="keyword">lambda</span>: [
+        <span class="string">"C"</span>, <span class="string">"C++"</span>, <span class="string">"CSS3"</span>, <span class="string">"HTML5"</span>,<span class="string">"JavaScript"</span>, <span class="string">"Java"</span>, <span class="string">"Python"</span>, <span class="string">"AWS"</span>, <span class="string">"Pandas"</span>,
+        <span class="string">"React"</span>, <span class="string">"Django"</span>, <span class="string">"Flask"</span>, <span class="string">"TailwindCSS"</span>,<span class="string">"Socket.io"</span>, <span class="string">"MongoDB"</span>, <span class="string">"NumPy"</span>, 
+        <span class="string">"PyTorch"</span>, <span class="string">"TensorFlow"</span>, <span class="string">"scikit‑learn"</span>, <span class="string">"Docker"</span>
+    ])
+
+<span class="decorator">@property</span>
+<span class="keyword">def</span> <span class="function">summary</span>(<span class="variable">self</span>) -> str:
+    <span class="keyword">return</span> (<span class="string">f"👋 I’m {self.name}, a Python developer from {self.location}, "</span>
+            <span class="string">f"working on an NLP projects. Currently learning "</span>
+            <span class="string">f"{', '.join(self.learning)}."</span>)
+
+<span class="keyword">def</span> <span class="function">work_experience</span>(<span class="variable">self</span>) -> List[Dict[str, str]]:
+    <span class="string">Internship at Novem control In Full Stack</span>,
+    <span class="string">Internship at Skysys Engineering In Data Science</span>
+    <span class="keyword">return</span> []
+
+<span class="keyword">def</span> <span class="function">repos</span>(<span class="variable">self</span>) -> Dict[str, str]:
+    <span class="keyword">return</span> {
+        <span class="string">"CT‑Farma"</span>: <span class="string">"AI‑powered agriculture web platform"</span>,
+        <span class="string">"CT‑KBC"</span>: <span class="string">"Python quiz game (KBC‑style) with lifelines"</span>,
+        <span class="string">"CT-Weather"</span>: <span class="string">"real time weather forcast with use of api "</span>,          
+        <span class="string">"CT-paycal"</span>: <span class="string">"a fun project on dhaj calculation you can demand "</span>,          
+        <span class="string">"CT-Planner"</span>: <span class="string">"mst/ exam sitting plan generator using ml"</span>,          
+        <span class="string">"CT-RPC"</span>: <span class="string">"a small fun game rock paper scissor for basic understanding"</span>,          
+
+    }
+<span class="keyword">def</span> <span class="function">describe</span>(<span class="variable">self</span>) -> None:
+    <span class="function">print</span>(<span class="variable">self</span>.summary)
+    <span class="function">print</span>(<span class="string">"\n🔧 Tech Stack:"</span>)
+    <span class="function">print</span>(<span class="string">", "</span>.join(<span class="variable">self</span>.tech_stack))
+    <span class="function">print</span>(<span class="string">"\n🚀 Current Projects:"</span>)
+    <span class="function">print</span>(*<span class="variable">self</span>.current_projects, sep=<span class="string">"\n - "</span>)
+    <span class="function">print</span>(<span class="string">"\n📂 Repos:"</span>)
+    <span class="keyword">for</span> name, desc <span class="keyword">in</span> <span class="variable">self</span>.repos().items():
+        <span class="function">print</span>(<span class="string">f" • {name}: {desc}"</span>)
+</code></pre>
+    </div>
+    </div>
+       </section>
+
+
+
+ <section id="journey" class="journey-section">
+  <div class="work-header-container">
+    <h1 class="work-main-header">My Journey</h1>
+    <h3 class="work-sub-header">My Successes :: My Failures</h3>
+  </div>
+
+  <div class="timeline-container">
+    <div class="timeline-line-upgraded">
+      <div class="timeline-point top">Starting</div>
+      <div class="timeline-point bottom">Continue...</div>
+    </div>
+
+    <!-- Timeline Event -->
+    <div class="timeline-event left" id="left">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/first.png')">
+          <div class="content-box">
+            <span class="card-title">Started Programming</span>
+            <p class="card-content">Began with Python and solved problems on HackerRank. Built CLI-based utilities.</p>
+          </div>
+          <div class="date-box">
+            <span class="month">NOV</span>
+            <span class="date">2022</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="timeline-event right" id="right">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/fifth.jpg')">
+          <div class="content-box">
+            <span class="card-title">Training at Novem Controls</span>
+            <p class="card-content">Get a hand on Experience in Full Stack</p>
+          </div>
+          <div class="date-box">
+            <span class="month">JUN</span>
+            <span class="date">2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      <div class="timeline-event left" id="left">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/second.jpg')">
+          <div class="content-box">
+            <span class="card-title">Joined Hackathons</span>
+            <p class="card-content">Participated in state-level hackathons(SIH). Built team projects under pressure.</p>
+
+          </div>
+          <div class="date-box">
+            <span class="month">DEC</span>
+            <span class="date">2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+    
+
+    <div class="timeline-event right" id="right">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/fourth.webp')">
+          <div class="content-box">
+            <span class="card-title">Selected From cllg for SIH (Smart India Hackathon)</span>
+            <p class="card-content">Provide a solution for DDOS attack</p>
+          </div>
+          <div class="date-box">
+            <span class="month">AUG</span>
+            <span class="date">2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="timeline-event left" id="left">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/third.jpg')">
+          <div class="content-box">
+            <span class="card-title">Built My Team <br><span style="color: rgb(255, 0, 0);"> COBRA TECH</span> </span>
+            <p class="card-content">Made a Team To Developed Projects And Solving Real World Problem</p>
+          </div>
+          <div class="date-box">
+            <span class="month">SEP</span>
+            <span class="date">2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+
+    <div class="timeline-event right" id="right">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/fifth.png')">
+          <div class="content-box">
+            <span class="card-title">Participlated for SSH (Smart State Hackathon)</span>
+            <p class="card-content">Solution demostration to the Teachers.</p>
+          </div>
+          <div class="date-box">
+            <span class="month">OCT</span>
+            <span class="date">2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      
+    <div class="timeline-event left" id="left">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/eigth.jpg')">
+          <div class="content-box">
+            <span class="card-title">CT-farma For SSH (Smart State Hackathon)</span>
+            <p class="card-content">Provide a demo of the project to the Director and Teachers.</p>
+          </div>
+          <div class="date-box">
+            <span class="month">NOV</span>
+            <span class="date">2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  
+
+    <div class="timeline-event right" id="right">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/seventh.png')">
+          <div class="content-box">
+            <span class="card-title">Training at Skysys Engineering </span>
+            <p class="card-content">Get hand on Experience in Data Science and Machine Learning</p>
+          </div>
+          <div class="date-box">
+            <span class="month">JUN</span>
+            <span class="date">2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="timeline-event left" id="left">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/sixth.jpg')">
+          <div class="content-box">
+            <span class="card-title">Participated and Won Project Exhibition</span>
+            <p class="card-content">1st prize in Project Exhibition</p>
+          </div>
+          <div class="date-box">
+            <span class="month">FEB</span>
+            <span class="date">2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="timeline-event right" id="right">
+      <div class="parent">
+        <div class="card" style="  background-image: url('static/journey/ninth.png')">
+          <div class="content-box">
+            <span class="card-title">Project Demo</span>
+            <p class="card-content">Provide a demo of the project to the Director and Teachers .</p>
+          </div>
+          <div class="date-box">
+            <span class="month">MAR</span>
+            <span class="date">2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="show-more-container" style="text-align: center; margin-top: 20px;">
+  <button id="showMoreJourneyBtn" class="show-more-btn">Show More</button>
+</div>
+
+
+
+
+
+</section>
+
+
+      </div>
+    </div>
+
+    
+  <footer id="contact" class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <!-- SVG Logo -->
+          <!-- (Paste your SVG code here) -->
+           <a style="font-size: 50px; font-weight:600 ;font-family: 'Dancing Script', cursive; color:#848884;">Contact Me</a>
+        </div>
+         <!-- Contact Form -->
+        <form  method="POST" class="footer-contact-form" id="contactForm">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+          <!-- Overlay Message Popup -->
+          <!-- Overlay Message Popup -->
+        <div id="overlay" class="overlay">
+          <span class="close-btn" onclick="closeOverlay()">&times;</span>
+          <div class="overlay-content">
+         <p id="overlayMessage" style="display: none;">Message sent successfully!</p>
+            <!-- From Uiverse.io by mobinkakei --> 
+            <div id="wifi-loader">
+                <svg class="circle-outer" viewBox="0 0 86 86">
+                    <circle class="back" cx="43" cy="43" r="40"></circle>
+                    <circle class="front" cx="43" cy="43" r="40"></circle>
+                    <circle class="new" cx="43" cy="43" r="40"></circle>
+                </svg>
+                <svg class="circle-middle" viewBox="0 0 60 60">
+                    <circle class="back" cx="30" cy="30" r="27"></circle>
+                    <circle class="front" cx="30" cy="30" r="27"></circle>
+                </svg>
+                <svg class="circle-inner" viewBox="0 0 34 34">
+                    <circle class="back" cx="17" cy="17" r="14"></circle>
+                    <circle class="front" cx="17" cy="17" r="14"></circle>
+                </svg>
+                <div class="text" data-text="Sending..."></div>
+            </div>
+          </div>
+        </div>
+        <ul class="footer-social">
+          <li>
+            <a href="https://www.facebook.com/share/19J88betEw/" target="_blank" class="footer-social-link facebook" aria-label="Facebook">
+              <!-- Facebook SVG -->
+               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                <path d="M 25 3 C 12.861562 3 3 12.861562 3 25 C 3 36.019135 11.127533 45.138355 21.712891 46.728516 L 22.861328 46.902344 L 22.861328 29.566406 L 17.664062 29.566406 L 17.664062 26.046875 L 22.861328 26.046875 L 22.861328 21.373047 C 22.861328 18.494965 23.551973 16.599417 24.695312 15.410156 C 25.838652 14.220896 27.528004 13.621094 29.878906 13.621094 C 31.758714 13.621094 32.490022 13.734993 33.185547 13.820312 L 33.185547 16.701172 L 30.738281 16.701172 C 29.349697 16.701172 28.210449 17.475903 27.619141 18.507812 C 27.027832 19.539724 26.84375 20.771816 26.84375 22.027344 L 26.84375 26.044922 L 32.966797 26.044922 L 32.421875 29.564453 L 26.84375 29.564453 L 26.84375 46.929688 L 27.978516 46.775391 C 38.71434 45.319366 47 36.126845 47 25 C 47 12.861562 37.138438 3 25 3 z M 25 5 C 36.057562 5 45 13.942438 45 25 C 45 34.729791 38.035799 42.731796 28.84375 44.533203 L 28.84375 31.564453 L 34.136719 31.564453 L 35.298828 24.044922 L 28.84375 24.044922 L 28.84375 22.027344 C 28.84375 20.989871 29.033574 20.060293 29.353516 19.501953 C 29.673457 18.943614 29.981865 18.701172 30.738281 18.701172 L 35.185547 18.701172 L 35.185547 12.009766 L 34.318359 11.892578 C 33.718567 11.811418 32.349197 11.621094 29.878906 11.621094 C 27.175808 11.621094 24.855567 12.357448 23.253906 14.023438 C 21.652246 15.689426 20.861328 18.170128 20.861328 21.373047 L 20.861328 24.046875 L 15.664062 24.046875 L 15.664062 31.566406 L 20.861328 31.566406 L 20.861328 44.470703 C 11.816995 42.554813 5 34.624447 5 25 C 5 13.942438 13.942438 5 25 5 z"></path>
+                </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/_rana__nikhil_?igsh=MTlrdzZ6MnZwa3h4OA==" target="_blank" class="footer-social-link instagram" aria-label="Instagram">
+              <!-- Instagram SVG -->
+               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 26 26">
+                <path d="M 7.546875 0 C 3.390625 0 0 3.390625 0 7.546875 L 0 18.453125 C 0 22.609375 3.390625 26 7.546875 26 L 18.453125 26 C 22.609375 26 26 22.609375 26 18.453125 L 26 7.546875 C 26 3.390625 22.609375 0 18.453125 0 Z M 7.546875 2 L 18.453125 2 C 21.527344 2 24 4.46875 24 7.546875 L 24 18.453125 C 24 21.527344 21.53125 24 18.453125 24 L 7.546875 24 C 4.472656 24 2 21.53125 2 18.453125 L 2 7.546875 C 2 4.472656 4.46875 2 7.546875 2 Z M 20.5 4 C 19.671875 4 19 4.671875 19 5.5 C 19 6.328125 19.671875 7 20.5 7 C 21.328125 7 22 6.328125 22 5.5 C 22 4.671875 21.328125 4 20.5 4 Z M 13 6 C 9.144531 6 6 9.144531 6 13 C 6 16.855469 9.144531 20 13 20 C 16.855469 20 20 16.855469 20 13 C 20 9.144531 16.855469 6 13 6 Z M 13 8 C 15.773438 8 18 10.226563 18 13 C 18 15.773438 15.773438 18 13 18 C 10.226563 18 8 15.773438 8 13 C 8 10.226563 10.226563 8 13 8 Z"></path>
+                </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com/callmenick716?t=UkjgUh0amXXL6Ig_9UM0hA&s=08" target="_blank" class="footer-social-link twitter" aria-label="Twitter">
+              <!-- Twitter SVG -->
+               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                <path d="M 11 4 C 7.1456661 4 4 7.1456661 4 11 L 4 39 C 4 42.854334 7.1456661 46 11 46 L 39 46 C 42.854334 46 46 42.854334 46 39 L 46 11 C 46 7.1456661 42.854334 4 39 4 L 11 4 z M 11 6 L 39 6 C 41.773666 6 44 8.2263339 44 11 L 44 39 C 44 41.773666 41.773666 44 39 44 L 11 44 C 8.2263339 44 6 41.773666 6 39 L 6 11 C 6 8.2263339 8.2263339 6 11 6 z M 13.085938 13 L 22.308594 26.103516 L 13 37 L 15.5 37 L 23.4375 27.707031 L 29.976562 37 L 37.914062 37 L 27.789062 22.613281 L 36 13 L 33.5 13 L 26.660156 21.009766 L 21.023438 13 L 13.085938 13 z M 16.914062 15 L 19.978516 15 L 34.085938 35 L 31.021484 35 L 16.914062 15 z"></path>
+                </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/nickrajput716" target="_blank" class="footer-social-link github" aria-label="GitHub">
+              <!-- GitHub SVG -->
+               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+                <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"></path>
+                </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/nikhil-rana-59742a291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="footer-social-link dribbble" aria-label="Linkedin">
+              <!-- linkedin SVG -->
+               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                <path d="M 9 4 C 6.2504839 4 4 6.2504839 4 9 L 4 41 C 4 43.749516 6.2504839 46 9 46 L 41 46 C 43.749516 46 46 43.749516 46 41 L 46 9 C 46 6.2504839 43.749516 4 41 4 L 9 4 z M 9 6 L 41 6 C 42.668484 6 44 7.3315161 44 9 L 44 41 C 44 42.668484 42.668484 44 41 44 L 9 44 C 7.3315161 44 6 42.668484 6 41 L 6 9 C 6 7.3315161 7.3315161 6 9 6 z M 14 11.011719 C 12.904779 11.011719 11.919219 11.339079 11.189453 11.953125 C 10.459687 12.567171 10.011719 13.484511 10.011719 14.466797 C 10.011719 16.333977 11.631285 17.789609 13.691406 17.933594 A 0.98809878 0.98809878 0 0 0 13.695312 17.935547 A 0.98809878 0.98809878 0 0 0 14 17.988281 C 16.27301 17.988281 17.988281 16.396083 17.988281 14.466797 A 0.98809878 0.98809878 0 0 0 17.986328 14.414062 C 17.884577 12.513831 16.190443 11.011719 14 11.011719 z M 14 12.988281 C 15.392231 12.988281 15.94197 13.610038 16.001953 14.492188 C 15.989803 15.348434 15.460091 16.011719 14 16.011719 C 12.614594 16.011719 11.988281 15.302225 11.988281 14.466797 C 11.988281 14.049083 12.140703 13.734298 12.460938 13.464844 C 12.78117 13.19539 13.295221 12.988281 14 12.988281 z M 11 19 A 1.0001 1.0001 0 0 0 10 20 L 10 39 A 1.0001 1.0001 0 0 0 11 40 L 17 40 A 1.0001 1.0001 0 0 0 18 39 L 18 33.134766 L 18 20 A 1.0001 1.0001 0 0 0 17 19 L 11 19 z M 20 19 A 1.0001 1.0001 0 0 0 19 20 L 19 39 A 1.0001 1.0001 0 0 0 20 40 L 26 40 A 1.0001 1.0001 0 0 0 27 39 L 27 29 C 27 28.170333 27.226394 27.345035 27.625 26.804688 C 28.023606 26.264339 28.526466 25.940057 29.482422 25.957031 C 30.468166 25.973981 30.989999 26.311669 31.384766 26.841797 C 31.779532 27.371924 32 28.166667 32 29 L 32 39 A 1.0001 1.0001 0 0 0 33 40 L 39 40 A 1.0001 1.0001 0 0 0 40 39 L 40 28.261719 C 40 25.300181 39.122788 22.95433 37.619141 21.367188 C 36.115493 19.780044 34.024172 19 31.8125 19 C 29.710483 19 28.110853 19.704889 27 20.423828 L 27 20 A 1.0001 1.0001 0 0 0 26 19 L 20 19 z M 12 21 L 16 21 L 16 33.134766 L 16 38 L 12 38 L 12 21 z M 21 21 L 25 21 L 25 22.560547 A 1.0001 1.0001 0 0 0 26.798828 23.162109 C 26.798828 23.162109 28.369194 21 31.8125 21 C 33.565828 21 35.069366 21.582581 36.167969 22.742188 C 37.266572 23.901794 38 25.688257 38 28.261719 L 38 38 L 34 38 L 34 29 C 34 27.833333 33.720468 26.627107 32.990234 25.646484 C 32.260001 24.665862 31.031834 23.983076 29.517578 23.957031 C 27.995534 23.930001 26.747519 24.626988 26.015625 25.619141 C 25.283731 26.611293 25 27.829667 25 29 L 25 38 L 21 38 L 21 21 z"></path>
+                </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-links">
+          <p class="footer-links-title">My Team</p>
+          <ul>
+            <li><a href="{{ url_for('team_history') }}">Team History</a></li>
+            <li><a href="{{ url_for('meet_the_team') }}">Meet the Team</a></li>
+            <li><a href="{{url_for('team_gallery')}}">Team Gallery</a></li>
+            <li><a href="{{url_for('team_achievements')}}">Team Achivements</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <p class="footer-links-title">Technologies </p>
+          <ul>
+            <li><a >Data Analysis</a></li>
+            <li><a >Data Science </a></li>
+            <li><a >Databases</a></li>
+            <li><a >Python Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <p class="footer-links-title">Helpful Links</p>
+          <ul>
+            <li><a href="{{url_for('faq')}}">FAQs</a></li>
+            <li><a href="{{url_for('support')}}">Support</a></li>
+            <li>
+              <a href="chilling" class="live-chat">
+                Working Project
+                <span class="live-chat-dot"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <p class="footer-links-title">Personal Info</p>
+          <ul>
+            <li>
+              <a href="mailto:nickrajput716@gmail.com" class="footer-contact">
+                <!-- Email SVG -->
+                <span>nickrajput716@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-contact">
+                <!-- Phone SVG -->
+                <span>(+91) 7018040856</span>
+              </a>
+            </li>
+            <li class="footer-contact">
+              <!-- Location SVG -->
+              <address>Kangra , Himachal Pardesh</address>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-flex">
+        <p>
+          <span>All rights reserved.</span>
+          <a href="{{url_for('terms')}}">Terms &amp; Conditions</a>
+        </p>
+        <p>&copy; 2025 @NIKHILRANA</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+  <!-- Blob Cursor Container -->
+  <div id="blob-cursor-container"></div>
+
+  <!-- SVG Filter for Blob -->
+  <svg style="position: absolute; width: 0; height: 0">
+    <filter id="blob-filter">
+      <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
+      <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -10" />
+    </filter>
+  </svg>
+
+
+<div class="nick-timeline-container">
+  <div class="nick-timeline-line"></div>
+  <div class="nick-timeline-circle nick-timeline-circle-top"></div>
+  <div class="nick-timeline-circle nick-timeline-circle-bottom"></div>
+  <div class="nick-timeline-label nick-timeline-label-top">Start</div>
+  <div class="nick-timeline-label nick-timeline-label-mid">Work</div>
+  <div class="nick-timeline-label nick-timeline-label-mid2">About</div>
+  <div class="nick-timeline-label nick-timeline-label-mid3">Journey</div>
+  <div class="nick-timeline-label nick-timeline-label-bottom">Contact</div>
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

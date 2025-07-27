@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cobra Tech - Team History</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card {
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: none;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: #facc15;
+      color: #1e1b4b;
+      font-weight: bold;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      z-index: 10;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(to right, #7e22ce, #9333ea);
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <h1 class="text-4xl text-center mb-10 text-purple-300">Meet the Team: <span class="text-white">Cobra Tech</span></h1>
+    <p class="text-center text-lg mb-12 text-gray-300 max-w-3xl mx-auto">We are a passionate group of 6 Computer Science Engineering students dedicated to building modern and impactful tech solutions. Here's a look into who we are!</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div class="card bg-gray-800 p-6 rounded-xl shadow-lg scroll-reveal">
+        <div class="badge">⭐ Team Leader</div>
+        <h2 class="text-2xl text-purple-400 mb-2">Nikhil Rana</h2>
+        <p><strong>Qalification:</strong> B Tech (CSE)</p>
+        <p><strong>Tech Interests:</strong> Data Analyst, Data Science, AI/ML, DevOps, Python Web Development</p>
+        <p><strong>Skills:</strong> Python, Flask, JavaScript, Tailwind CSS, React</p>
+        <p><strong>Hobbies:</strong> Football, Chess, Coding Challenges</p>
+      </div>
+
+      <div class="card bg-gray-800 p-6 rounded-xl shadow-lg scroll-reveal">
+        <h2 class="text-2xl text-purple-400 mb-2">Jahnavi</h2>
+        <p><strong>Qalification:</strong> B Tech (CSE)</p>
+        <p><strong>Tech Interests:</strong> Frontend Design, Data Preprocessing, AI/ML</p>
+        <p><strong>Skills:</strong> Figma, Data Science, Java, HTML, CSS, Python</p>
+        <p><strong>Hobbies:</strong> Listening Music, Cooking</p>
+      </div>
+
+      <div class="card bg-gray-800 p-6 rounded-xl shadow-lg scroll-reveal">
+        <h2 class="text-2xl text-purple-400 mb-2">Ansal</h2>
+        <p><strong>Qalification:</strong> B Tech (CSE)</p>
+        <p><strong>Tech Interests:</strong> Data Collection, Preprocessing, AI/ML</p>
+        <p><strong>Skills:</strong> Data Science, Data Preprocessing, Python, Panda, Google Searching</p>
+        <p><strong>Hobbies:</strong> Gaming, Football</p>
+      </div>
+
+      <div class="card bg-gray-800 p-6 rounded-xl shadow-lg scroll-reveal">
+        <h2 class="text-2xl text-purple-400 mb-2">Anamika Dogra</h2>
+        <p><strong>Qalification:</strong> B Tech (CSE)</p>
+        <p><strong>Tech Interests:</strong> Data Science, AI/ML, Data handling</p>
+        <p><strong>Skills:</strong> Python, Pandas, SQL</p>
+        <p><strong>Hobbies:</strong> Travel, Cooking</p>
+      </div>
+
+      <div class="card bg-gray-800 p-6 rounded-xl shadow-lg scroll-reveal">
+        <h2 class="text-2xl text-purple-400 mb-2">Priya</h2>
+        <p><strong>Qalification:</strong> B Tech (CSE)</p>
+        <p><strong>Tech Interests:</strong> Frontend Development, Pythn AI/ML</p>
+        <p><strong>Skills:</strong> HTML, CSS, Python</p>
+        <p><strong>Hobbies:</strong> Sleeping, Cooking</p>
+      </div>
+
+      <div class="card bg-gray-800 p-6 rounded-xl shadow-lg scroll-reveal">
+        <h2 class="text-2xl text-purple-400 mb-2">Priya Katoch</h2>
+        <p><strong>Qalification:</strong> B Tech (CSE)</p>
+        <p><strong>Tech Interests:</strong> Full Stack Development, Python</p>
+        <p><strong>Skills:</strong>html, css, js, Python </p>
+        <p><strong>Hobbies:</strong> Photography, Cooking</p>
+      </div>
+    </div>
+
+    <div class="mt-20 text-center max-w-2xl mx-auto scroll-reveal">
+      <h2 class="text-3xl text-purple-300 mb-4">What Makes Us Unique?</h2>
+      <p class="text-gray-300 text-lg">Each member of Cobra Tech brings a unique blend of passion and technical skill. Together, we've built tools, solved real-world problems, and collaborated on impactful projects. We believe in innovation, responsibility, and teamwork. We support and uplift each other to grow together as developers and leaders of tomorrow.</p>
+    </div>
+
+    <!-- Back Link -->
+    <div class="text-center">
+      <a href="/" class="back-button mt-10">← Back to Projects</a>
+    </div>
+  </section>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate once
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

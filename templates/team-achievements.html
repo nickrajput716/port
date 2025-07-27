@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Team Achievements - Cobra Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(to right, #7e22ce, #9333ea);
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.5);
+    }
+
+    .podium {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .place {
+      width: 160px;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+    }
+
+    .first { background: gold; color: black; height: 200px; }
+    .second { background: silver; color: black; height: 160px; }
+    .third { background: #cd7f32; color: black; height: 120px; }
+
+    @media (max-width: 640px) {
+      .podium {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .place {
+        width: 80%;
+        height: auto !important;
+        padding: 1.5rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="px-6 py-12">
+
+  <h1 class="text-4xl font-bold text-center text-purple-300 mb-12 scroll-reveal">🏆 Team Achievements</h1>
+
+  <!-- Podium Section -->
+  <div class="podium mb-16 scroll-reveal">
+    <div class="place second">Selected from college for SIH (Smart India Hackathon)</div>
+    <div class="place first">1st in Project Exhibition</div>
+    <div class="place third">Organized College Hackathons & Events</div>
+  </div>
+
+  <!-- Achievements Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <!-- Card 1 -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-md scroll-reveal">
+      <img src="/static/achievements/a1.jpg" alt="Hackathon" class="w-full h-48 object-cover rounded-md mb-4" />
+      <h2 class="text-xl text-purple-300 font-bold">Project Exhibition 2024</h2>
+      <p class="text-sm text-gray-300">🏅 Won 1st place in Project Exhibition where we focused on Smart Agriculture Solutions.</p>
+      <p class="mt-2 text-sm"><strong>Project:</strong> CT-Farma AI System</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-md scroll-reveal">
+      <img src="/static/achievements/a2.png" alt="Exhibition" class="w-full h-48 object-cover rounded-md mb-4" />
+      <h2 class="text-xl text-purple-300 font-bold">SIH (Smart India Hackathon) 2023</h2>
+      <p class="text-sm text-gray-300">🏅 Our project didn't win but gave us valuable exposure to tools, mentors, and collaborative work environments.</p>
+      <p class="mt-2 text-sm"><strong>Project:</strong> CT-DDOS_PROX</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-md scroll-reveal">
+      <img src="/static/achievements/a3.png" alt="Exhibition" class="w-full h-48 object-cover rounded-md mb-4" />
+      <h2 class="text-xl text-purple-300 font-bold">College Level Events & Hackathons 2022–2026</h2>
+      <p class="text-sm text-gray-300">🏅 Our team has hosted and attended various hackathons and events in our college.</p>
+      <p class="mt-2 text-sm"><strong>Project:</strong> CT (Cobra Tech)</p>
+    </div>
+
+  </div>
+
+  <!-- Back Link -->
+  <div class="text-center mt-16 scroll-reveal">
+    <a href="/" class="back-button">← Back to Projects</a>
+  </div>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

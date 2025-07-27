@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terms & Conditions - Cobra Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(to right, #7e22ce, #9333ea);
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.5);
+    }
+  </style>
+</head>
+<body class="px-6 py-12">
+
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-center text-purple-300 mb-10 scroll-reveal">📜 Terms & Conditions</h1>
+
+    <div class="space-y-8 text-gray-300 text-sm sm:text-base leading-relaxed scroll-reveal">
+      <p>
+        Welcome to Cobra Tech. By accessing our website and using our services, you agree to be bound by the following Terms and Conditions. Please read them carefully.
+      </p>
+
+      <h2 class="text-xl font-semibold text-purple-200">1. Acceptance of Terms</h2>
+      <p>
+        By accessing or using any part of the site, you agree to be bound by these terms. If you do not agree, you may not access the website or use any services.
+      </p>
+
+      <h2 class="text-xl font-semibold text-purple-200">2. Intellectual Property</h2>
+      <p>
+        All content, branding, logos, and intellectual property belong to Cobra Tech unless stated otherwise. You may not reproduce, duplicate, or copy material without our written consent.
+      </p>
+
+      <h2 class="text-xl font-semibold text-purple-200">3. User Conduct</h2>
+      <p>
+        Users must not engage in any activity that may disrupt or damage the website, misuse data, or violate applicable laws.
+      </p>
+
+      <h2 class="text-xl font-semibold text-purple-200">4. Limitation of Liability</h2>
+      <p>
+        Cobra Tech shall not be liable for any indirect or consequential loss or damage arising from the use of this site.
+      </p>
+
+      <h2 class="text-xl font-semibold text-purple-200">5. Changes to Terms</h2>
+      <p>
+        We reserve the right to modify these terms at any time. Continued use of the website implies acceptance of the updated terms.
+      </p>
+
+      <p class="italic text-gray-400">Last updated: July 2025</p>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-12 scroll-reveal">
+      <a href="/" class="back-button">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -218,11 +218,11 @@ function updateNickTimeline() {
 
   // Set labels
   labelTop.style.top = (topOffset - 2) + "px";
-  labelMid.style.top = (topOffset + lineHeight/17.5) + "px";
+  labelMid.style.top = (topOffset + lineHeight/10) + "px";
   labelMid.style.transform = "translateY(-50%)";
-  labelMid2.style.top = (topOffset + lineHeight/2.22) + "px";
+  labelMid2.style.top = (topOffset + lineHeight/4.1) + "px";
   labelMid2.style.transform = "translateY(-50%)";
-  labelMid3.style.top = (topOffset + lineHeight/1.4) + "px";
+  labelMid3.style.top = (topOffset + lineHeight/1.9) + "px";
   labelMid3.style.transform = "translateY(-50%)";
   labelBottom.style.top = (topOffset + lineHeight - 2) + "px";
 }
@@ -346,3 +346,251 @@ overlay.addEventListener('click', (e) => {
 
       }
     });
+
+
+
+
+
+
+
+
+    
+
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const targetUrl = '/newpage'; // Modify per card if needed
+    const rect = card.getBoundingClientRect();
+    const scrollY = window.scrollY;
+    const scrollX = window.scrollX;
+
+    const originalTop = rect.top + scrollY;
+    const originalLeft = rect.left + scrollX;
+
+    const clone = card.cloneNode(true);
+    clone.classList.add('card-active');
+
+    // Style the cloned card
+    clone.style.position = 'absolute';
+    clone.style.top = `${originalTop}px`;
+    clone.style.left = `${originalLeft}px`;
+    clone.style.width = `${rect.width}px`;
+    clone.style.height = `${rect.height}px`;
+    clone.style.margin = '0';
+    clone.style.zIndex = '99999';
+    clone.style.transition = 'all 0.8s ease-in-out';
+    clone.style.pointerEvents = 'none';
+
+    document.body.appendChild(clone);
+    card.style.visibility = 'hidden';
+
+    // Add ❌ close button (top-right of screen)
+    const closeBtn = document.createElement('div');
+    closeBtn.className = 'page-close-btn';
+    closeBtn.innerHTML = '&times;';
+    document.body.appendChild(closeBtn);
+
+    // Prevent scroll during animation
+    document.body.style.overflow = 'hidden';
+
+    // ✅ Calculate center relative to viewport + scroll
+    const centerX = scrollX + window.innerWidth / 2 - rect.width / 2;
+    const centerY = scrollY + window.innerHeight / 2 - rect.height / 2;
+
+    requestAnimationFrame(() => {
+      clone.style.transform = `translate(${centerX - originalLeft}px, ${centerY - originalTop}px) scale(1.05)`;
+      clone.style.boxShadow = '0 0 40px rgba(255, 0, 255, 0.4)';
+    });
+
+    // Fade out everything else
+    setTimeout(() => {
+      document.body.classList.add('fade-out');
+    }, 400);
+
+    // Set redirect timer (you can uncomment if needed)
+    const navTimeout = setTimeout(() => {
+      // window.location.href = targetUrl;
+    }, 1800);
+
+    // ❌ Close logic — animate back to original position
+    closeBtn.addEventListener('click', () => {
+      clearTimeout(navTimeout);
+
+      clone.style.transform = 'translate(0, 0) scale(1)';
+      clone.style.boxShadow = 'none';
+
+      setTimeout(() => {
+        clone.remove();
+        closeBtn.remove();
+        card.style.visibility = 'visible';
+        document.body.classList.remove('fade-out');
+        document.body.style.overflow = '';
+      }, 800);
+    });
+  });
+});
+
+
+
+
+
+
+
+function revealCards(cards, maxVisible, showMoreBtn, extraCallback = null) {
+  const total = cards.length;
+
+  // Hide button if cards are ≤ maxVisible
+  if (total <= maxVisible) {
+    showMoreBtn.style.display = "none";
+    return;
+  }
+
+  // Hide extra cards with animation class
+  cards.forEach((card, index) => {
+    if (index >= maxVisible) {
+      card.classList.add("hidden-card");
+      card.style.display = "none";
+    }
+  });
+
+  showMoreBtn.addEventListener("click", () => {
+    cards.forEach((card, index) => {
+      if (index >= maxVisible) {
+        card.style.display = "flex"; // or "block" if needed
+        setTimeout(() => {
+          card.classList.add("visible-card");
+        }, 50);
+      }
+    });
+
+    // Show any extra elements like Continue text
+    if (extraCallback) extraCallback();
+
+    showMoreBtn.style.display = "none";
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 🔹 Work Section
+  const workCards = document.querySelectorAll("section#work a");
+  const showMoreWorkBtn = document.getElementById("showMoreWorkBtn");
+  if (workCards.length && showMoreWorkBtn) {
+    revealCards(workCards, 6, showMoreWorkBtn);
+  }
+
+  // 🔹 Journey Section
+  const journeyCards = document.querySelectorAll(".timeline-event");
+  const showMoreJourneyBtn = document.getElementById("showMoreJourneyBtn");
+  const continueText = document.querySelector(".timeline-point.bottom");
+
+  if (journeyCards.length && showMoreJourneyBtn) {
+    revealCards(journeyCards, 6, showMoreJourneyBtn, () => {
+      if (continueText) continueText.style.display = "block";
+    });
+
+    // Hide continue text initially
+    if (continueText) continueText.style.display = "none";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// script.js (append this at the bottom or integrate into your current script.js file)
+
+document.addEventListener("DOMContentLoaded", () => {
+  // === Show More Logic for WORK Section ===
+  const workContainer = document.querySelector("#work .grid");
+  const workItems = workContainer.querySelectorAll("a");
+  const showMoreWorkBtn = document.getElementById("showMoreWorkBtn");
+  const workShowMoreContainer = showMoreWorkBtn?.parentElement;
+
+  if (workItems.length <= 6) {
+    workShowMoreContainer.style.display = "none";
+  } else {
+    workItems.forEach((item, index) => {
+      if (index >= 6) item.style.display = "none";
+    });
+    showMoreWorkBtn.style.display = "inline-block";
+    workShowMoreContainer.style.display = "block";
+
+    showMoreWorkBtn.addEventListener("click", () => {
+      workItems.forEach((item, index) => {
+        if (index >= 6) {
+          item.style.display = "block";
+          item.style.opacity = 0;
+          item.style.transition = "opacity 0.6s ease";
+          setTimeout(() => (item.style.opacity = 1), 50);
+        }
+      });
+      showMoreWorkBtn.style.display = "none";
+    });
+  }
+
+  // === Show More Logic for JOURNEY Section ===
+  const journeyContainer = document.querySelector(".timeline-container");
+  const journeyItems = journeyContainer.querySelectorAll(".timeline-event");
+  const showMoreJourneyBtn = document.getElementById("showMoreJourneyBtn");
+  const journeyShowMoreContainer = showMoreJourneyBtn?.parentElement;
+  const bottomText = document.querySelector(".timeline-point.bottom");
+
+  if (journeyItems.length <= 6) {
+    journeyShowMoreContainer.style.display = "none";
+  } else {
+    journeyItems.forEach((item, index) => {
+      if (index >= 6) item.style.display = "none";
+    });
+    showMoreJourneyBtn.style.display = "inline-block";
+    journeyShowMoreContainer.style.display = "block";
+    bottomText.style.display = "none";
+
+    showMoreJourneyBtn.addEventListener("click", () => {
+      journeyItems.forEach((item, index) => {
+        if (index >= 6) {
+          item.style.display = "flex";
+          item.style.opacity = 0;
+          item.style.transition = "opacity 0.6s ease";
+          setTimeout(() => (item.style.opacity = 1), 50);
+        }
+      });
+      bottomText.style.display = "block";
+      showMoreJourneyBtn.style.display = "none";
+    });
+  }
+
+  // === Scroll Reveal Animation ===
+const revealElements = document.querySelectorAll("section:not(#hero), .timeline-event, .project-card, .content, .footer, .timeline-point, .card, .work-header-container, .about-container");
+
+revealElements.forEach(el => {
+  if (!el.closest("header")) {
+    el.classList.add("scroll-hidden");
+  }
+});
+
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("scroll-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  revealElements.forEach(el => observer.observe(el));
+});
